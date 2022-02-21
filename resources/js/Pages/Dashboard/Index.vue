@@ -1,35 +1,38 @@
 <template>
      <div class="uk-overflow-auto">
           
-   <table class="uk-table uk-table-hover uk-table-divider">
+   <table class="uk-table uk-table-hover uk-table-divider" >
         <thead>
             <tr>
                 <th class="uk-table-shrink">ID</th>
-                <th>Код</th>
-                <th>Название</th>
-                <th>Ед.изм</th>
-                <th>Кол-во</th>
-                <th>Цена опт</th>
-                <th>Цена розн</th>
-                <th>Вес</th>
-                <th>Вес всего</th>
+                <th class="uk-table-shrink">Код</th>
+                <th class="uk-table-shrink uk-text-nowrap" >Название</th>
+                <th  class="uk-table-shrink uk-text-nowrap">Ед.изм</th>
+                <th class="uk-table-link" ><a class="uk-link-reset" href="">Кол-во</a></th>
+                <th  class="uk-table-shrink uk-text-nowrap">Цена опт</th>
+                <th  class="uk-table-shrink uk-text-nowrap">Цена розн</th>
+                <th  class="uk-table-shrink uk-text-nowrap">Вес</th>
+                <th  class="uk-table-shrink uk-text-nowrap">Вес всего</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="pos in tovar"     :key="pos.list">
                 <td >{{ pos.id }}</td>
                  <td >{{ pos.code }}</td>
-                 <td >{{ pos.name }}</td>
-                  <td >{{ pos.edizm }}</td>
+                 <td class="uk-text-nowrap">{{ pos.name }}</td>
+                  <td class="uk-text-nowrap">{{ pos.edizm }}</td>
                       <td ><input 
-                                type="numeric"
+                                type="number"
+                                size="1"
+                                min="0"
                                 @keyup.enter="addItem" ref="myInput"
                                  v-model="pos.kol"
+                                 
                         ></td>
-                    <td >{{ pos.pr_opt }}</td>
-                    <td >{{ pos.pr_roz }}</td>
-                    <td >{{ pos.ves }}</td>
-                    <td >{{ pos.ves*pos.kol }}</td>
+                    <td class="uk-text-nowrap">{{ pos.pr_opt }}</td>
+                    <td class="uk-text-nowrap">{{ pos.pr_roz }}</td>
+                    <td class="uk-text-nowrap">{{ pos.ves }}</td>
+                    <td class="uk-text-nowrap">{{ (Number(pos.ves) * Number(pos.kol)).toFixed(2) }}</td>
             </tr>
           </tbody>
           <tfoot>
@@ -70,11 +73,19 @@ import Layout from '@/Shared/Layout'
                         var tbSumVes = 0;
                      //    for (var i=0(tbSumVes,i) in tovar) {
                           for (var i = 0; i < this.tovar.length; ++i) {
-                         tbSumVes = tbSumVes + this.tovar[i].ves * this.tovar[i].kol
+                         tbSumVes = tbSumVes + Number(this.tovar[i].ves) * Number(this.tovar[i].kol)
                           }
                         
-                        return tbSumVes
-                        }
+                        return tbSumVes.toFixed(2);
+                        },
+                      
+    // сеттер:
+                        //   set: function (newValue) {
+                        //     var names = newValue.split(' ')
+                        //     this.firstName = names[0]
+                        //     this.lastName = names[names.length - 1]
+    // }
+ // } 
                     }
 
         
