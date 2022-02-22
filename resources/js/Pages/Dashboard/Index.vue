@@ -2,7 +2,7 @@
      <div class="uk-overflow-auto">
           <span v-on:click="ChangeState">
          {{ show ? 'Все' : '>0' }}
-      </span>
+      </span> <span class="uk-margin-small-right" uk-icon="check"></span>
    <table class="uk-table uk-table-hover uk-table-divider" >
         <thead>
             <tr>
@@ -10,7 +10,7 @@
                 <th class="uk-table-shrink">Код</th>
                 <th class="uk-table-shrink uk-text-nowrap" >Название</th>
                 <th  class="uk-table-shrink uk-text-nowrap">Ед.изм</th>
-                <th class="uk-table-shrink uk-text-nowrap" v-on:click="ChangeState">Кол-во {{ show ? '>0' : 'Все' }}</th>
+                <th class="uk-table-shrink uk-text-nowrap" v-on:click="ChangeState">Кол-во <span class="uk-margin-small-right" uk-icon="heart"></span></th>
                 <th  class="uk-table-shrink uk-text-nowrap">Цена опт</th>
                 <th  class="uk-table-shrink uk-text-nowrap">Цена розн</th>
                 <th  class="uk-table-shrink uk-text-nowrap">Вес</th>
@@ -85,7 +85,11 @@ import { ref, computed } from 'vue'
                         
                         return tbSumVes.toFixed(2);
                         },
-                      
+            showIcon: function () {
+                    if (this.show) { return "heart"} else {return "hesrt"}
+                  
+                    
+              },
     // сеттер:
                         //   set: function (newValue) {
                         //     var names = newValue.split(' ')
