@@ -1,8 +1,21 @@
 <template>
      <div class="uk-overflow-auto">
-          <span v-on:click="ChangeState">
-         {{ show ? 'Все' : '>0' }}
-      </span> <span class="uk-margin-small-right" uk-icon="check"></span>
+         
+      <!-- <input :ref="'input_item_' + item.id" v-model="item.title" @keyup.enter="saveItemTitle(item)" type="text" /> -->
+   <!-- <input 
+                        type="text" 
+                        :placeholder="placeholderString" 
+                        @keyup.enter="addItem" ref="myInput"
+                        v-model="inputValue"
+                        /> -->
+
+    <div class="uk-margin">
+   <form class="uk-search uk-search-default">
+        <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+        <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput">
+    </form>
+</div>
+
    <table class="uk-table uk-table-hover uk-table-divider" >
         <thead>
             <tr>
@@ -10,7 +23,7 @@
                 <th class="uk-table-shrink">Код</th>
                 <th class="uk-table-shrink uk-text-nowrap" >Название</th>
                 <th  class="uk-table-shrink uk-text-nowrap">Ед.изм</th>
-                <th class="uk-table-shrink uk-text-nowrap" v-on:click="ChangeState">Кол-во <span class="uk-margin-small-right" uk-icon="heart"></span></th>
+                <th class="uk-table-shrink uk-text-nowrap" v-on:click="ChangeState">Кол-во <span class="uk-margin-small-right" :uk-icon="showIcon"></span></th>
                 <th  class="uk-table-shrink uk-text-nowrap">Цена опт</th>
                 <th  class="uk-table-shrink uk-text-nowrap">Цена розн</th>
                 <th  class="uk-table-shrink uk-text-nowrap">Вес</th>
@@ -57,6 +70,7 @@ import { ref, computed } from 'vue'
  layout: Layout,
             data: () => ({
                 show: true,
+                
             tovar: [ 
               { id:1, code:"СЦ1", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
               { id:2, code:"СЦ2", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
@@ -75,6 +89,12 @@ import { ref, computed } from 'vue'
             this.show = !this.show;
          },
         },
+
+        mounted() {
+             const labelInputRef = this.$refs.labelInput;
+              labelInputRef.focus();
+        },
+
         computed: {
                     fVesVsego: function () {
                         var tbSumVes = 0;
@@ -86,7 +106,8 @@ import { ref, computed } from 'vue'
                         return tbSumVes.toFixed(2);
                         },
             showIcon: function () {
-                    if (this.show) { return "heart"} else {return "hesrt"}
+                
+                    if (this.show) { return "list"} else {return "table"}
                   
                     
               },
@@ -100,9 +121,9 @@ import { ref, computed } from 'vue'
                     }
 
         
-        // mounted() {
-        //     this.loadPosts();
-        // },
+       // mounted() {
+       //     this.loadPosts();
+       // },
         // methods: {
         //     loadPosts() {
         //         axios.get('/api/posts')
