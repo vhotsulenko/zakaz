@@ -15,7 +15,9 @@
         <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput">
     </form>
 </div>
-
+<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement({behavior: 'smooth'})">
+    Smooth scroll to first element with class of .index-50
+  </button>
    <table class="uk-table uk-table-hover uk-table-divider" >
         <thead>
             <tr>
@@ -31,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-show="(show || pos.kol > 0) " v-for="pos in tovar"     :key="pos.list" >
+            <tr v-show="(show || pos.kol > 0) " v-for="(pos,index) in tovar"     :key="pos.list" :class="`index-${index}`">
                 <td >{{ pos.id }}</td>
                  <td >{{ pos.code }}</td>
                  <td class="uk-text-nowrap">{{ pos.name }}</td>
@@ -51,11 +53,13 @@
             </tr>
           </tbody>
           <tfoot>
-              <tr>
+             
+              <tr id="box">
                   <td colspan="7"> </td>
                   <td> Вес всего:</td>
                   <td>{{ fVesVsego }}</td>
               </tr>
+              
           </tfoot>
     </table>
      </div>
@@ -70,11 +74,27 @@ import { ref, computed } from 'vue'
  layout: Layout,
             data: () => ({
                 show: true,
-                
+                active: false,
+                inputValue: '',
             tovar: [ 
               { id:1, code:"СЦ1", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
               { id:2, code:"СЦ2", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
               { id:3, code:"СЦ3", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:4, code:"СЦ4", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:5, code:"СЦ5", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:6, code:"СЦ6", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:7, code:"СЦ7", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:8, code:"СЦ8", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:9, code:"СЦ9", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:10, code:"СЦ10", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:11, code:"СЦ11", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:12, code:"СЦ12", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:13, code:"СЦ13", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:14, code:"СЦ14", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:15, code:"СЦ15", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:16, code:"СЦ16", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:17, code:"СЦ17", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+
 
             ]
 
@@ -88,11 +108,21 @@ import { ref, computed } from 'vue'
     ChangeState: function() {
             this.show = !this.show;
          },
+       
+       scrollToElement(options) {
+      const el = this.$el.getElementsByClassName('index-16')[0];
+      
+      if (el) {
+        el.scrollIntoView(options);
+      }
+  },
+
         },
 
         mounted() {
              const labelInputRef = this.$refs.labelInput;
-              labelInputRef.focus();
+           //   labelInputRef.focus();
+              scrollToElement();
         },
 
         computed: {
@@ -140,6 +170,9 @@ import { ref, computed } from 'vue'
 </script>
 <style scoped>
 
+.thov:hover { 
+    background: #a2e1e6; /* Цвет фона */
+   }
 </style>
       
      
