@@ -15,7 +15,7 @@
         <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput">
     </form>
 </div>
-<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement({behavior: 'smooth'})">
+<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(16)">
     Smooth scroll to first element with class of .index-50
   </button>
    <table class="uk-table uk-table-hover uk-table-divider" >
@@ -109,11 +109,11 @@ import { ref, computed } from 'vue'
             this.show = !this.show;
          },
        
-       scrollToElement(options) {
-      const el = this.$el.getElementsByClassName('index-16')[0];
+       scrollToElement(ind) {
+      const el = this.$el.getElementsByClassName('index-'+ind)[0];
       
       if (el) {
-        el.scrollIntoView(options);
+        el.scrollIntoView({behavior: 'smooth'});
       }
   },
 
@@ -121,7 +121,7 @@ import { ref, computed } from 'vue'
 
         mounted() {
              const labelInputRef = this.$refs.labelInput;
-           //   labelInputRef.focus();
+              labelInputRef.focus();
               scrollToElement();
         },
 
