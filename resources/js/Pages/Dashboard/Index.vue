@@ -1,4 +1,5 @@
 <template>
+
      <div class="uk-overflow-auto">
          
       <!-- <input :ref="'input_item_' + item.id" v-model="item.title" @keyup.enter="saveItemTitle(item)" type="text" /> -->
@@ -10,15 +11,16 @@
                         /> -->
 
     <div class="uk-margin">
-   <form class="uk-search uk-search-default">
+   <!-- <form class="uk-search uk-search-default">
         <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-        <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput">
-    </form>
+        <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput" v-on:input="scrollToElement(inputValue)">
+    </form> -->
 </div>
-<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(16)">
+<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(15)">
     Smooth scroll to first element with class of .index-50
   </button>
    <table class="uk-table uk-table-hover uk-table-divider" >
+       
         <thead>
             <tr>
                 <th class="uk-table-shrink">ID</th>
@@ -32,6 +34,7 @@
                 <th  class="uk-table-shrink uk-text-nowrap">Вес всего</th>
             </tr>
         </thead>
+     
         <tbody>
             <tr v-show="(show || pos.kol > 0) " v-for="(pos,index) in tovar"     :key="pos.list" :class="`index-${index}`">
                 <td >{{ pos.id }}</td>
