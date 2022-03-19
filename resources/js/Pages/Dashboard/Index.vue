@@ -8,15 +8,14 @@
                         :placeholder="placeholderString" 
                         @keyup.enter="addItem" ref="myInput"
                         v-model="inputValue"
-                        /> -
-   <!-- <div class="uk-margin"> -->
-    <!-- <div class="uk-margin"> -->
+                        /> -->
 
-   <!-- <form class="uk-search uk-search-default">
+   <!-- // <div class="uk-margin">
+    <form class="uk-search uk-search-default">
         <a href="" class="uk-search-icon-flip" uk-search-icon></a>
         <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput" v-on:input="scrollToElement(inputValue)">
-    </form> -->
-<!-- </div> -->
+    </form> 
+</div> -->
 <p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(15)">
     Smooth scroll to first element with class of .index-50
   </button>
@@ -37,7 +36,7 @@
         </thead>
      
         <tbody>
-            <tr v-show="(show || pos.kol > 0) " v-for="(pos,index) in tovar"     :key="pos.list" :class="`index-${index}`">
+            <tr v-show="(show || pos.kol > 0)" v-for="(pos,index) in tovar"  :key="pos.list" :class="`index-${index}`">
                 <td >{{ pos.id }}</td>
                  <td >{{ pos.code }}</td>
                  <td class="uk-text-nowrap">{{ pos.name }}</td>
@@ -98,11 +97,6 @@ import Layout from '@/Shared/Layout'
               { id:15, code:"СЦ15", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
               { id:16, code:"СЦ16", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
               { id:17, code:"СЦ17", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
-<<<<<<< HEAD
-=======
-
-
->>>>>>> f7a89e33b2750ef521e34b40cfe2c2a2c9bd888b
             ]
             
         }),
@@ -122,15 +116,11 @@ import Layout from '@/Shared/Layout'
         el.scrollIntoView({behavior: 'smooth'});
       }
   },
-<<<<<<< HEAD
-=======
-
->>>>>>> f7a89e33b2750ef521e34b40cfe2c2a2c9bd888b
         },
         mounted() {
-             const labelInputRef = this.$refs.labelInput;
-              labelInputRef.focus();
-              scrollToElement();
+             //const labelInputRef = this.$refs.labelInput;
+             // labelInputRef.focus();
+             // scrollToElement();
         },
         computed: {
                     fVesVsego: function () {
@@ -148,13 +138,6 @@ import Layout from '@/Shared/Layout'
                   
                     
               },
-           //   inputValues: function()  {
-        //            const namess = this.tovar.map(el => el.code);
-        //            var linp = "СЦ2";
-        //            linp = this.$refs.labelInput.value;
-        //       console.log(linp);
-        //      return (namess.indexOf(linp))
-        //    },
     // сеттер:
                         //   set: function (newValue) {
                         //     var names = newValue.split(' ')
@@ -181,12 +164,7 @@ import Layout from '@/Shared/Layout'
     
 </script>
 <style scoped>
-<<<<<<< HEAD
-=======
-
->>>>>>> f7a89e33b2750ef521e34b40cfe2c2a2c9bd888b
 .thov:hover { 
     background: #a2e1e6; /* Цвет фона */
    }
 </style>
-      

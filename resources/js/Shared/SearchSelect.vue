@@ -15,13 +15,14 @@ export default {
   components: {
     //Dropdown,
   },
-  props: {
-    modelValue: String,
-    maxWidth: {
-      type: Number,
-      default: 300,
-    },
-  },
-  emits: ['update:modelValue', 'reset'],
+  //  props: {
+    
+  //     inputValue: String,
+  // //   //    maxWidth: {
+  // //   //    type: Number,
+  // //   //   default: 300,
+  // //   //  },
+  //  },
+ // emits: ['update:modelValue', 'reset'],
 }
 </script>
