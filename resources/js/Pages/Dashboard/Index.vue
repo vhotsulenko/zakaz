@@ -8,9 +8,10 @@
                         :placeholder="placeholderString" 
                         @keyup.enter="addItem" ref="myInput"
                         v-model="inputValue"
-                        /> -->
-
+                        /> -
    <!-- <div class="uk-margin"> -->
+    <!-- <div class="uk-margin"> -->
+
    <!-- <form class="uk-search uk-search-default">
         <a href="" class="uk-search-icon-flip" uk-search-icon></a>
         <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput" v-on:input="scrollToElement(inputValue)">
@@ -97,6 +98,11 @@ import Layout from '@/Shared/Layout'
               { id:15, code:"СЦ15", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
               { id:16, code:"СЦ16", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
               { id:17, code:"СЦ17", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f7a89e33b2750ef521e34b40cfe2c2a2c9bd888b
             ]
             
         }),
@@ -116,6 +122,10 @@ import Layout from '@/Shared/Layout'
         el.scrollIntoView({behavior: 'smooth'});
       }
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> f7a89e33b2750ef521e34b40cfe2c2a2c9bd888b
         },
         mounted() {
              const labelInputRef = this.$refs.labelInput;
@@ -171,6 +181,10 @@ import Layout from '@/Shared/Layout'
     
 </script>
 <style scoped>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f7a89e33b2750ef521e34b40cfe2c2a2c9bd888b
 .thov:hover { 
     background: #a2e1e6; /* Цвет фона */
    }
