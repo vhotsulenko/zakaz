@@ -20,7 +20,7 @@
             </dropdown>
           </div>
           <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-white border-b md:px-12 md:py-0">
-            <div class="mr-4 mt-1">{{ auth.user.account.name }}</div>
+            <div class="mr-4 mt-1"><search-select/>{{ auth.user.account.name }}</div>
             <dropdown class="mt-1" placement="bottom-end">
               <template #default>
                 <div class="group flex items-center cursor-pointer select-none">
@@ -60,6 +60,7 @@ import Logo from '@/Shared/Logo'
 import Dropdown from '@/Shared/Dropdown'
 import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
+import SearchSelect from './SearchSelect.vue'
 
 export default {
   components: {
@@ -69,6 +70,7 @@ export default {
     Link,
     Logo,
     MainMenu,
+    SearchSelect,
   },
   props: {
     auth: Object,

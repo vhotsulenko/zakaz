@@ -1,4 +1,5 @@
 <template>
+
      <div class="uk-overflow-auto">
          
       <!-- <input :ref="'input_item_' + item.id" v-model="item.title" @keyup.enter="saveItemTitle(item)" type="text" /> -->
@@ -9,14 +10,17 @@
                         v-model="inputValue"
                         /> -->
 
-    <div class="uk-margin">
-   <form class="uk-search uk-search-default">
+   <!-- <div class="uk-margin"> -->
+   <!-- <form class="uk-search uk-search-default">
         <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-        <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput">
-    </form>
-</div>
-
+        <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput" v-on:input="scrollToElement(inputValue)">
+    </form> -->
+<!-- </div> -->
+<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(15)">
+    Smooth scroll to first element with class of .index-50
+  </button>
    <table class="uk-table uk-table-hover uk-table-divider" >
+       
         <thead>
             <tr>
                 <th class="uk-table-shrink">ID</th>
@@ -30,8 +34,9 @@
                 <th  class="uk-table-shrink uk-text-nowrap">Вес всего</th>
             </tr>
         </thead>
+     
         <tbody>
-            <tr v-show="(show || pos.kol > 0) " v-for="pos in tovar"     :key="pos.list" >
+            <tr v-show="(show || pos.kol > 0) " v-for="(pos,index) in tovar"     :key="pos.list" :class="`index-${index}`">
                 <td >{{ pos.id }}</td>
                  <td >{{ pos.code }}</td>
                  <td class="uk-text-nowrap">{{ pos.name }}</td>
@@ -51,11 +56,13 @@
             </tr>
           </tbody>
           <tfoot>
-              <tr>
+             
+              <tr id="box">
                   <td colspan="7"> </td>
                   <td> Вес всего:</td>
                   <td>{{ fVesVsego }}</td>
               </tr>
+              
           </tfoot>
     </table>
      </div>
@@ -64,20 +71,33 @@
 
 <script>
 import Layout from '@/Shared/Layout'
-import { ref, computed } from 'vue'
+//import { ref, computed } from 'vue'
     // import axios from'axios';
     export default {
  layout: Layout,
             data: () => ({
                 show: true,
-                
+                active: false,
+                inputValue: '',
             tovar: [ 
               { id:1, code:"СЦ1", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
               { id:2, code:"СЦ2", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
               { id:3, code:"СЦ3", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
-
+              { id:4, code:"СЦ4", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:5, code:"СЦ5", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:6, code:"СЦ6", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:7, code:"СЦ7", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:8, code:"СЦ8", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:9, code:"СЦ9", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:10, code:"СЦ10", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:11, code:"СЦ11", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:12, code:"СЦ12", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:13, code:"СЦ13", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:14, code:"СЦ14", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
+              { id:15, code:"СЦ15", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
+              { id:16, code:"СЦ16", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
+              { id:17, code:"СЦ17", name:"Зчіпка Zirka-61 подовжена (Ø-21; L-94)", edizm:"шт", kol: 3, pr_opt: 240, pr_roz: 300, ves: 2.5 },
             ]
-
             
         }),
         methods: {
@@ -88,13 +108,20 @@ import { ref, computed } from 'vue'
     ChangeState: function() {
             this.show = !this.show;
          },
+       
+       scrollToElement(ind) {
+      const el = this.$el.getElementsByClassName('index-'+ind)[0];
+      
+      if (el) {
+        el.scrollIntoView({behavior: 'smooth'});
+      }
+  },
         },
-
         mounted() {
              const labelInputRef = this.$refs.labelInput;
               labelInputRef.focus();
+              scrollToElement();
         },
-
         computed: {
                     fVesVsego: function () {
                         var tbSumVes = 0;
@@ -111,6 +138,13 @@ import { ref, computed } from 'vue'
                   
                     
               },
+           //   inputValues: function()  {
+        //            const namess = this.tovar.map(el => el.code);
+        //            var linp = "СЦ2";
+        //            linp = this.$refs.labelInput.value;
+        //       console.log(linp);
+        //      return (namess.indexOf(linp))
+        //    },
     // сеттер:
                         //   set: function (newValue) {
                         //     var names = newValue.split(' ')
@@ -119,7 +153,6 @@ import { ref, computed } from 'vue'
     // }
  // } 
                     }
-
         
        // mounted() {
        //     this.loadPosts();
@@ -131,7 +164,6 @@ import { ref, computed } from 'vue'
         //             console.log(res.data);
         //             this.posts = res.data;
         //         }
-
         //         )
         //     }
         // }
@@ -139,7 +171,8 @@ import { ref, computed } from 'vue'
     
 </script>
 <style scoped>
-
+.thov:hover { 
+    background: #a2e1e6; /* Цвет фона */
+   }
 </style>
       
-     
