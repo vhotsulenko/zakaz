@@ -2,21 +2,7 @@
 
      <div class="uk-overflow-auto">
          
-      <!-- <input :ref="'input_item_' + item.id" v-model="item.title" @keyup.enter="saveItemTitle(item)" type="text" /> -->
-   <!-- <input 
-                        type="text" 
-                        :placeholder="placeholderString" 
-                        @keyup.enter="addItem" ref="myInput"
-                        v-model="inputValue"
-                        /> -->
-
-   <!-- // <div class="uk-margin">
-    <form class="uk-search uk-search-default">
-        <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-        <input class="uk-search-input" type="search" placeholder="Search" v-model="inputValue" ref="labelInput" v-on:input="scrollToElement(inputValue)">
-    </form> 
-</div> -->
-<p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(15)">
+      <p>{{ inputValue }}</p>  <button v-on:click="scrollToElement(15)">
     Smooth scroll to first element with class of .index-50
   </button>
    <table class="uk-table uk-table-hover uk-table-divider" >
@@ -36,7 +22,7 @@
         </thead>
      
         <tbody>
-            <tr v-show="(show || pos.kol > 0)" v-for="(pos,index) in tovar"  :key="pos.list" :class="`index-${index}`">
+            <tr v-show="(show || pos.kol > 0) " v-for="(pos,index) in tovar"     :key="pos.list" :class="`index-${index}`">
                 <td >{{ pos.id }}</td>
                  <td >{{ pos.code }}</td>
                  <td class="uk-text-nowrap">{{ pos.name }}</td>
@@ -71,14 +57,21 @@
 
 <script>
 import Layout from '@/Shared/Layout'
+//import SearchSelect from '@/Shared/SearchSelect'
 //import { ref, computed } from 'vue'
     // import axios from'axios';
     export default {
- layout: Layout,
+      layout: Layout,
+      // components:  {
+        
+      //   SearchSelect,
+      // },
+ 
+
             data: () => ({
                 show: true,
                 active: false,
-                inputValue: '',
+              //  inputValue: '',
             tovar: [ 
               { id:1, code:"СЦ1", name:"Зчіпка Zirka-105, «Зубр-105», «Булат» (Ø-18,5; L-60)", edizm:"шт", kol: 2, pr_opt: 540, pr_roz: 600, ves: 4.5 },
               { id:2, code:"СЦ2", name:"Зчіпка Zirka-61 коротка (Ø-21; L-94)", edizm:"шт", kol: 0, pr_opt: 740, pr_roz: 900, ves: 4.7 },
@@ -100,6 +93,16 @@ import Layout from '@/Shared/Layout'
             ]
             
         }),
+
+        props: {
+    
+          inputValue: String,
+    //    maxWidth: {
+    //    type: Number,
+    //   default: 300,
+    //  },
+          },
+
         methods: {
             addItem()  {
                 this.tovar.kol = this.$refs.myInput.value
@@ -118,9 +121,9 @@ import Layout from '@/Shared/Layout'
   },
         },
         mounted() {
-             //const labelInputRef = this.$refs.labelInput;
-             // labelInputRef.focus();
-             // scrollToElement();
+           //  const labelInputRef = this.$refs.labelInput;
+           //   labelInputRef.focus();
+           //   scrollToElement();
         },
         computed: {
                     fVesVsego: function () {
@@ -138,6 +141,13 @@ import Layout from '@/Shared/Layout'
                   
                     
               },
+           //   inputValues: function()  {
+        //            const namess = this.tovar.map(el => el.code);
+        //            var linp = "СЦ2";
+        //            linp = this.$refs.labelInput.value;
+        //       console.log(linp);
+        //      return (namess.indexOf(linp))
+        //    },
     // сеттер:
                         //   set: function (newValue) {
                         //     var names = newValue.split(' ')
@@ -168,3 +178,4 @@ import Layout from '@/Shared/Layout'
     background: #a2e1e6; /* Цвет фона */
    }
 </style>
+      
